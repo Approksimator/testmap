@@ -14,17 +14,15 @@ body { margin: 0; padding: 0; }
 <body>
 <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
 <div id="map"></div>
-
 <script>
 	mapboxgl.accessToken = 'pk.eyJ1IjoiYXBwcm9rc2ltYXRvciIsImEiOiJjbDgyd3NtNzIwMDVnM29wNjgyMmt2NmRqIn0._bWWI00IQItO0rMP5cmSxQ';
     (async () => {
         const map = new mapboxgl.Map({
             container: 'map',
-            zoom: 12,
-            center: [24.278170466423035,
-          48.16343768595622],
+            zoom: 13,
+            center: [6.58968, 45.39701],
             pitch: 76,
-            bearing: 180,
+            bearing: 150,
             // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
             style: 'mapbox://styles/mapbox/satellite-streets-v11',
             interactive: false,
@@ -34,11 +32,9 @@ body { margin: 0; padding: 0; }
         // Start downloading the route data, and wait for map load to occur in parallel
         const [pinRouteGeojson] = await Promise.all([
             fetch(
-			//'pinRoute.geojson'
                 'https://docs.mapbox.com/mapbox-gl-js/assets/route-pin.geojson'
-				            )
-							//.then((response) => response.json()),
-            //map.once('load')
+            ).then((response) => response.json()),
+            map.once('load')
         ]);
 
         const pinRoute = pinRouteGeojson.features[0].geometry.coordinates;
