@@ -33,7 +33,7 @@ body { margin: 0; padding: 0; }
         // Start downloading the route data, and wait for map load to occur in parallel
         const [pinRouteGeojson] = await Promise.all([
             fetch(
-                'https://github.com/Approksimator/testmap/pinRoute.geojson'
+                'https://github.com/Approksimator/testmap/routepin.geojson'
 		    //'https://docs.mapbox.com/mapbox-gl-js/assets/route-pin.geojson'
             ).then((response) => response.json()),
             map.once('load')
